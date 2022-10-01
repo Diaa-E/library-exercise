@@ -12,6 +12,11 @@ const bookPages = +document.querySelector("#bookPages").value;
 formNewBook.addEventListener("submit", (e) => {
     //stop form from refreshing the page
     e.preventDefault();
+    //isRead is put here to refresh if the selection is changed
+    const isRead = !!document.querySelector("#isRead").checked;
+
+    addToLibrary(new book(bookTitle, bookAuthor, bookPages, isRead));
+
 })
 
 function book(title, author, numberOfPages, isRead)

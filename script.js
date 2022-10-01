@@ -15,7 +15,7 @@ formNewBook.addEventListener("submit", (e) => {
     const bookPages = +document.querySelector("#bookPages").value;
     const isRead = !!document.querySelector("#isRead").checked;
 
-    addToLibrary(new book(bookTitle, bookAuthor, bookPages, isRead, library.length));
+    addToLibrary(new book(bookTitle, bookAuthor, bookPages, isRead));
 })
 
 function book(title, author, numberOfPages, isRead, order)
@@ -24,7 +24,6 @@ function book(title, author, numberOfPages, isRead, order)
     this.author = author;
     this.numberOfPages = numberOfPages;
     this.isRead = isRead;
-    this.order = order;
 };
 
 //return book's info
@@ -45,9 +44,6 @@ function addToLibrary(newBook)
 {
     library.push(newBook);
     updateShelf();
-
-    //addToShelf(newBook);
-    //create a visual of the book
 };
 
 function removeFromLibrary(bookIndex)
@@ -55,33 +51,6 @@ function removeFromLibrary(bookIndex)
     library.splice(bookIndex, 1);
     updateShelf();
 };
-
-/*//Add visual of the book
-function addToShelf(newBook)
-{
-    const pBook = document.createElement("p");
-    pBook.innerText = newBook.info();
-    
-    addRemoveButton(newBook, pBook);
-
-    //add to shelf
-    divShelf.appendChild(pBook);
-
-};
-
-function addRemoveButton(newBook, pBook)
-{
-    const btnRemoveBook = document.createElement("button");
-    btnRemoveBook.setAttribute("data-index", newBook.order);
-    btnRemoveBook.innerText = "Remove";
-    pBook.appendChild(btnRemoveBook);
-}
-
-function removeBook(bookIndex)
-{
-    library.splice(bookIndex, 1);
-
-}*/
 
 
 //This is a replacement to adding books once they are created
@@ -100,6 +69,20 @@ function updateShelf()
     {
         const currentBook = document.createElement("p");
         currentBook.innerText = library[i].info();
+        currentBook.appendChild(addRemoveButton(i));
         divShelf.appendChild(currentBook);
     }
 };
+
+function addRemoveButton(buttonIndex)
+{
+    const btnRemove = document.createElement('button');
+    btnRemove.innerText = "Remove";
+    btnRemove.setAttribute("data-index", buttonIndex);
+
+    btnRemove.addEventListener('click', (e) =>{
+        removeFromLibrary(+e.target.getAttribute("data-index"));
+    });
+
+    return btnRemove;
+}

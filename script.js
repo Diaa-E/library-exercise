@@ -3,7 +3,6 @@
 const library = [];
 
 const formNewBook = document.querySelector("form");
-const divShelf = document.querySelector(".shelf");
 
 formNewBook.addEventListener("submit", (e) => {
     //stop form from refreshing the page
@@ -45,16 +44,14 @@ book.prototype.toggleRead = function()
 function addToLibrary(newBook)
 {
     library.push(newBook);
+    updateShelf();
 
-    addToShelf(newBook);
+    //addToShelf(newBook);
     //create a visual of the book
-    
-    
-    
 };
 
 //Add visual of the book
-function addToShelf(newBook)
+/*function addToShelf(newBook)
 {
     const pBook = document.createElement("p");
     pBook.innerText = newBook.info();
@@ -72,4 +69,27 @@ function addRemoveButton(newBook, pBook)
     btnRemoveBook.setAttribute("data-index", newBook.order);
     btnRemoveBook.innerText = "Remove";
     pBook.appendChild(btnRemoveBook);
+}
+
+function removeBook(bookIndex)
+{
+    library.splice(bookIndex, 1);
+
+
+}*/
+
+function updateShelf()
+{
+    const divShelf = document.querySelector(".shelf");
+
+    //clear all elements
+    //better than HTML as it doesn't invoke HTML parser
+    divShelf.innerText = '';
+
+    for (let i = 0; i < library.length; i++)
+    {
+        const currentBook = document.createElement("p");
+        currentBook.innerText = library[i].info();
+        divShelf.appendChild(currentBook);
+    }
 }

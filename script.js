@@ -57,20 +57,19 @@ function addToLibrary(newBook)
 function addToShelf(newBook)
 {
     const pBook = document.createElement("p");
-    pBook.innerText = `${newBook.title} by ${newBook.author}, ${newBook.numberOfPages} pages, ` +
-    `${newBook.isRead === true? "Already read" : "Not read Yet"}.`;
+    pBook.innerText = newBook.info();
     
-    addRemoveButton(pBook);
+    addRemoveButton(newBook, pBook);
 
     //add to shelf
     divShelf.appendChild(pBook);
 
 };
 
-function addRemoveButton(pBook)
+function addRemoveButton(newBook, pBook)
 {
     const btnRemoveBook = document.createElement("button");
-    btnRemoveBook.setAttribute("data-index", library.length-1);
+    btnRemoveBook.setAttribute("data-index", newBook.order);
     btnRemoveBook.innerText = "Remove";
     pBook.appendChild(btnRemoveBook);
 }

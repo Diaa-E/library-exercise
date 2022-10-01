@@ -41,19 +41,36 @@ book.prototype.toggleRead = function()
     this.isRead = !this.isRead;
 };
 
+//Add book data to the array
 function addToLibrary(newBook)
 {
     library.push(newBook);
 
+    addToShelf(newBook);
     //create a visual of the book
-    const pBookBody = document.createElement("p");
+    
+    
+    
+};
+
+//Add visual of the book
+function addToShelf(newBook)
+{
+    const pBook = document.createElement("p");
+    pBook.innerText = `${newBook.title} by ${newBook.author}, ${newBook.numberOfPages} pages, ` +
+    `${newBook.isRead === true? "Already read" : "Not read Yet"}.`;
+    
+    addRemoveButton(pBook);
+
+    //add to shelf
+    divShelf.appendChild(pBook);
+
+};
+
+function addRemoveButton(pBook)
+{
     const btnRemoveBook = document.createElement("button");
     btnRemoveBook.setAttribute("data-index", library.length-1);
     btnRemoveBook.innerText = "Remove";
-    pBookBody.innerText = `${newBook.title} by ${newBook.author}, ${newBook.numberOfPages} pages, ` +
-    `${newBook.isRead === true? "Already read" : "Not read Yet"}.`;
-    pBookBody.appendChild(btnRemoveBook);
-
-    //add to shelf
-    divShelf.appendChild(pBookBody);
-};
+    pBook.appendChild(btnRemoveBook);
+}

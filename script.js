@@ -1,5 +1,19 @@
 'use strict';
 
+const library = [];
+
+const formNewBook = document.querySelector("form");
+
+const bookTitle = document.querySelector("#bookTitle").value;
+const bookAuthor = document.querySelector("#bookAuthor").value;
+//the + converts string to number
+const bookPages = +document.querySelector("#bookPages").value;
+
+formNewBook.addEventListener("submit", (e) => {
+    //stop form from refreshing the page
+    e.preventDefault();
+})
+
 function book(title, author, numberOfPages, isRead)
 {
     this.title = title;
@@ -21,3 +35,10 @@ book.prototype.toggleRead = function()
     this.isRead = !this.isRead;
 };
 
+function addToLibrary(newBook)
+{
+    library.push(newBook);
+};
+
+const book1 = new book("Title", "Author", 200, false);
+console.log(book1.info());

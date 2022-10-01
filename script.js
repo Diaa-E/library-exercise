@@ -29,8 +29,7 @@ function book(title, author, numberOfPages, isRead, order)
 //return book's info
 book.prototype.info = function()
 {
-    return `${this.title} by ${this.author}, ${this.numberOfPages} pages, ` +
-            `${this.isRead === true? "Already read" : "Not read Yet"}.`;
+    return `${this.title} by ${this.author}, ${this.numberOfPages} pages, `;
 };
 
 //read or unread a book

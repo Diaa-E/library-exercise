@@ -3,16 +3,17 @@
 const library = [];
 
 const formNewBook = document.querySelector("form");
-
-const bookTitle = document.querySelector("#bookTitle").value;
-const bookAuthor = document.querySelector("#bookAuthor").value;
-//the + converts string to number
-const bookPages = +document.querySelector("#bookPages").value;
+const divShelf = document.querySelector(".shelf");
 
 formNewBook.addEventListener("submit", (e) => {
     //stop form from refreshing the page
     e.preventDefault();
-    //isRead is put here to refresh if the selection is changed
+
+    //elements are put here to refresh if the input is changed
+    const bookTitle = document.querySelector("#bookTitle").value;
+    const bookAuthor = document.querySelector("#bookAuthor").value;
+    //the + converts string to number
+    const bookPages = +document.querySelector("#bookPages").value;
     const isRead = !!document.querySelector("#isRead").checked;
 
     addToLibrary(new book(bookTitle, bookAuthor, bookPages, isRead, library.length));
@@ -43,7 +44,11 @@ book.prototype.toggleRead = function()
 function addToLibrary(newBook)
 {
     library.push(newBook);
-};
 
-const book1 = new book("Title", "Author", 200, false);
-console.log(book1.info());
+    const bookBody = document.createElement("p");
+    
+    bookBody.innerText = `${newBook.title} by ${newBook.author}, ${newBook.numberOfPages} pages, ` +
+    `${newBook.isRead === true? "Already read" : "Not read Yet"}.`;
+
+    divShelf.appendChild(bookBody);
+};

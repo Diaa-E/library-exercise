@@ -15,16 +15,16 @@ formNewBook.addEventListener("submit", (e) => {
     //isRead is put here to refresh if the selection is changed
     const isRead = !!document.querySelector("#isRead").checked;
 
-    addToLibrary(new book(bookTitle, bookAuthor, bookPages, isRead));
-
+    addToLibrary(new book(bookTitle, bookAuthor, bookPages, isRead, library.length));
 })
 
-function book(title, author, numberOfPages, isRead)
+function book(title, author, numberOfPages, isRead, order)
 {
     this.title = title;
     this.author = author;
     this.numberOfPages = numberOfPages;
     this.isRead = isRead;
+    this.order = order;
 };
 
 //return book's info

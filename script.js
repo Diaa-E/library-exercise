@@ -45,10 +45,15 @@ function addToLibrary(newBook)
 {
     library.push(newBook);
 
-    const bookBody = document.createElement("p");
-    
-    bookBody.innerText = `${newBook.title} by ${newBook.author}, ${newBook.numberOfPages} pages, ` +
+    //create a visual of the book
+    const pBookBody = document.createElement("p");
+    const btnRemoveBook = document.createElement("button");
+    btnRemoveBook.setAttribute("data-index", library.length-1);
+    btnRemoveBook.innerText = "Remove";
+    pBookBody.innerText = `${newBook.title} by ${newBook.author}, ${newBook.numberOfPages} pages, ` +
     `${newBook.isRead === true? "Already read" : "Not read Yet"}.`;
+    pBookBody.appendChild(btnRemoveBook);
 
-    divShelf.appendChild(bookBody);
+    //add to shelf
+    divShelf.appendChild(pBookBody);
 };

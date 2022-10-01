@@ -69,6 +69,7 @@ function updateShelf()
     {
         const currentBook = document.createElement("p");
         currentBook.innerText = library[i].info();
+        currentBook.appendChild(addReadButton(i));
         currentBook.appendChild(addRemoveButton(i));
         divShelf.appendChild(currentBook);
     }
@@ -85,4 +86,18 @@ function addRemoveButton(buttonIndex)
     });
 
     return btnRemove;
+}
+
+function addReadButton(buttonIndex)
+{
+    const btnRead = document.createElement('button')
+    btnRead.innerText = `${library[buttonIndex].isRead? "Already read." : "Not read yet."}`;
+    btnRead.setAttribute("data-index", buttonIndex);
+
+    btnRead.addEventListener('click', () => {
+        library[buttonIndex].toggleRead();
+        updateShelf();
+    });
+
+    return btnRead;
 }

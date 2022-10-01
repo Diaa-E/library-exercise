@@ -50,8 +50,14 @@ function addToLibrary(newBook)
     //create a visual of the book
 };
 
-//Add visual of the book
-/*function addToShelf(newBook)
+function removeFromLibrary(bookIndex)
+{
+    library.splice(bookIndex, 1);
+    updateShelf();
+};
+
+/*//Add visual of the book
+function addToShelf(newBook)
 {
     const pBook = document.createElement("p");
     pBook.innerText = newBook.info();
@@ -75,9 +81,13 @@ function removeBook(bookIndex)
 {
     library.splice(bookIndex, 1);
 
-
 }*/
 
+
+//This is a replacement to adding books once they are created
+//When a book is removed using the previous methods, the data-index property
+//is no longer accurate, it can be refreshed but that's probably the same as
+//looping throught them in the new function but the new function is simpler
 function updateShelf()
 {
     const divShelf = document.querySelector(".shelf");
@@ -92,4 +102,4 @@ function updateShelf()
         currentBook.innerText = library[i].info();
         divShelf.appendChild(currentBook);
     }
-}
+};

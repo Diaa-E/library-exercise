@@ -27,7 +27,7 @@ formNewBook.addEventListener("submit", (e) => {
         bookPages, 
         isRead, 
         `rgb(${R}, ${G}, ${B})`,
-        `rgb(${256 - R}, ${256 - G}, ${256 - B})`));
+        getFontColor(R, G, B)));
 })
 
 function book(title, author, numberOfPages, isRead, color, fontColor)
@@ -97,6 +97,26 @@ function updateShelf()
 function getRandomColor()
 {
     return Math.ceil(Math.random()*256);
+}
+
+function getFontColor(R, G, B)
+{
+    //if book color bright return dark font
+    if(R > 150)
+    {
+        return "black";
+    }
+    else if(G > 150)
+    {
+        return "black";
+    }
+    else if (B > 150)
+    {
+        return "black";
+    }
+
+    //return bright font
+    return "white";
 }
 
 function addRemoveButton(buttonIndex)

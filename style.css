@@ -84,9 +84,13 @@ button{
     min-width: 800px;
     gap: 10px;
     place-items: center;
+    padding: 20px;
 }
 
 .book{
-    padding: 10px;
+    display: flex;;
+    padding: 20px;
     border-radius: 5px;
+    gap: 10px;
+    place-items: center;
 }

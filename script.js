@@ -67,6 +67,7 @@ function updateShelf()
     for (let i = 0; i < library.length; i++)
     {
         const currentBook = document.createElement("p");
+        currentBook.classList.add("book")
         currentBook.innerText = library[i].info();
         currentBook.appendChild(addReadButton(i));
         currentBook.appendChild(addRemoveButton(i));

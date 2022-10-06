@@ -27,6 +27,7 @@ body{
     flex-direction: column;
     place-content: center;
     place-items: center;
+    padding: 20px;
 }
 
 fieldset{
@@ -73,5 +74,18 @@ button{
     box-shadow: 1px 1px 10px -5px black;
     background-color: var(--button-color);
     font-weight: bold;
+    color: var(--font-light);
+}
+
+.shelf{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    min-width: 800px;
+    gap: 10px;
+    place-items: center;
+}
+
+.book{
     color: var(--font-light);
 }

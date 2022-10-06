@@ -13,17 +13,25 @@
         <fieldset>
             <legend>Add a New Book</legend>
 
-            <label for="bookTitle">Book's Title</label>
-            <input required id="bookTitle" name="bookTitle" type="text" value="title">
+            <div class="field">
+                <label for="bookTitle">Book's Title</label>
+                <input required id="bookTitle" name="bookTitle" type="text" value="title">
+            </div>
 
-            <label for="bookAuthor">Book's Author</label>
-            <input required id="bookAuthor" name="bookAuthor type="text" value="author">
+            <div class="field">
+                <label for="bookAuthor">Book's Author</label>
+                <input required id="bookAuthor" name="bookAuthor type="text" value="author">
+            </div>
 
-            <label for="bookPages">Number of Pages</label>
-            <input required id="bookPages" name="bookPages" type="number" value="500">
+            <div class="field">
+                <label for="bookPages">Number of Pages</label>
+                <input required id="bookPages" name="bookPages" type="number" value="500">
+            </div>
 
-            <input id="isRead" name="isRead" type="checkbox">
-            <label for="isRead">I already read this book.</label>
+            <div class="field-checkbox">
+                <input id="isRead" name="isRead" type="checkbox">
+                <label for="isRead">I already read this book.</label>
+            </div>
 
             <button id="addBook" type="submit">Add to Shelf</button>
         </fieldset>

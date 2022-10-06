@@ -66,14 +66,27 @@ function updateShelf()
 
     for (let i = 0; i < library.length; i++)
     {
+        const R = getRandomColor();
+        const G = getRandomColor();
+        const B = getRandomColor();
+
         const currentBook = document.createElement("p");
-        currentBook.classList.add("book")
+        currentBook.classList.add("book");
+        //generate random book color
+        currentBook.style.backgroundColor = `rgb(${R}, ${G}, ${B})`;
+        //invert background color and use it as font for visiblity
+        currentBook.style.color = `rgb(${256 - R}, ${256 - G}, ${256 - B})`;
         currentBook.innerText = library[i].info();
         currentBook.appendChild(addReadButton(i));
         currentBook.appendChild(addRemoveButton(i));
         divShelf.appendChild(currentBook);
     }
 };
+
+function getRandomColor()
+{
+    return Math.ceil(Math.random()*256);
+}
 
 function addRemoveButton(buttonIndex)
 {

@@ -124,6 +124,7 @@ function addRemoveButton(buttonIndex)
     const btnRemove = document.createElement('button');
     btnRemove.innerText = "Remove";
     btnRemove.setAttribute("data-index", buttonIndex);
+    btnRemove.classList.add("remove");
 
     btnRemove.addEventListener('click', (e) =>{
         removeFromLibrary(+e.target.getAttribute("data-index"));

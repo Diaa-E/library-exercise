@@ -15,15 +15,29 @@ formNewBook.addEventListener("submit", (e) => {
     const bookPages = +document.querySelector("#bookPages").value;
     const isRead = !!document.querySelector("#isRead").checked;
 
-    addToLibrary(new book(bookTitle, bookAuthor, bookPages, isRead));
+    //Book color is added as a property to 
+    //avoid random shuffling when updating shelf
+    const R = getRandomColor();
+    const G = getRandomColor();
+    const B = getRandomColor();
+
+    addToLibrary(new book(
+        bookTitle, 
+        bookAuthor, 
+        bookPages, 
+        isRead, 
+        `rgb(${R}, ${G}, ${B})`,
+        `rgb(${256 - R}, ${256 - G}, ${256 - B})`));
 })
 
-function book(title, author, numberOfPages, isRead, order)
+function book(title, author, numberOfPages, isRead, color, fontColor)
 {
     this.title = title;
     this.author = author;
     this.numberOfPages = numberOfPages;
     this.isRead = isRead;
+    this.color = color;
+    this.fontColor = fontColor;
 };
 
 //return book's info
@@ -66,16 +80,13 @@ function updateShelf()
 
     for (let i = 0; i < library.length; i++)
     {
-        const R = getRandomColor();
-        const G = getRandomColor();
-        const B = getRandomColor();
 
         const currentBook = document.createElement("p");
         currentBook.classList.add("book");
-        //generate random book color
-        currentBook.style.backgroundColor = `rgb(${R}, ${G}, ${B})`;
-        //invert background color and use it as font for visiblity
-        currentBook.style.color = `rgb(${256 - R}, ${256 - G}, ${256 - B})`;
+        //assign book's color
+        currentBook.style.backgroundColor = library[i].color;
+        currentBook.style.color = library[i].fontColor;
+
         currentBook.innerText = library[i].info();
         currentBook.appendChild(addReadButton(i));
         currentBook.appendChild(addRemoveButton(i));

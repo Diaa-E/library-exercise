@@ -21,7 +21,7 @@ formNewBook.addEventListener("submit", (e) => {
     const G = getRandomColor();
     const B = getRandomColor();
 
-    addToLibrary(new book(
+    addToLibrary(new Book(
         bookTitle, 
         bookAuthor, 
         bookPages, 
@@ -30,26 +30,27 @@ formNewBook.addEventListener("submit", (e) => {
         getFontColor(R, G, B)));
 })
 
-function book(title, author, numberOfPages, isRead, color, fontColor)
+class Book
 {
-    this.title = title;
-    this.author = author;
-    this.numberOfPages = numberOfPages;
-    this.isRead = isRead;
-    this.color = color;
-    this.fontColor = fontColor;
-};
+    constructor(title, author, numberOfPages, isRead, color, fontColor)
+    {
+        this.title = title;
+        this.author = author;
+        this.numberOfPages = numberOfPages;
+        this.isRead = isRead;
+        this.color = color;
+        this.fontColor = fontColor;
+    }
 
-//return book's info
-book.prototype.info = function()
-{
-    return `${this.title} by ${this.author}, ${this.numberOfPages} pages, `;
-};
+    getInfo()
+    {
+        return `${this.title} by ${this.author}, ${this.numberOfPages} pages, `;
+    }
 
-//read or unread a book
-book.prototype.toggleRead = function()
-{
-    this.isRead = !this.isRead;
+    toggleRead()
+    {
+        this.isRead = !this.isRead;
+    }
 };
 
 //Add book data to the array
@@ -87,7 +88,7 @@ function updateShelf()
         currentBook.style.backgroundColor = library[i].color;
         currentBook.style.color = library[i].fontColor;
 
-        currentBook.innerText = library[i].info();
+        currentBook.innerText = library[i].getInfo();
         currentBook.appendChild(addReadButton(i));
         currentBook.appendChild(addRemoveButton(i));
         divShelf.appendChild(currentBook);
